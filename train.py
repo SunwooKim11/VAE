@@ -112,6 +112,7 @@ class Trainer:
                     self.valset = make_img_data(self.config.val_data_path, self.trans)
                     self.testset = make_img_data(self.config.test_data_path, self.trans)
                 
+                # data에 폴더 내에 피클로 저장.
                 with open(self.base_path+'data/'+self.config.data_name+'/train.pkl', 'wb') as f:
                     pickle.dump(self.trainset, f)
                 with open(self.base_path+'data/'+self.config.data_name+'/val.pkl', 'wb') as f:
@@ -179,7 +180,9 @@ class Trainer:
 
                     total_loss += loss.item()
                     if i % 100 == 0:
+                        # Epoch 9: 300/375 step loss: 103.92281341552734 이런 식으로 나옴
                         print('Epoch {}: {}/{} step loss: {}'.format(epoch+1, i, len(self.dataloaders[phase]), loss.item()/x.size(0)))
+                        print("loss.item:", loss.item)
                 epoch_loss = total_loss/len(self.dataloaders[phase].dataset)
                 print('{} loss: {:4f}\n'.format(phase, epoch_loss))
 
@@ -187,6 +190,10 @@ class Trainer:
                     train_loss_history.append(epoch_loss)
                 if phase == 'val':
                     val_loss_history.append(epoch_loss)
+                    # val loss 가 최소를 가질 떄,
+                    # train 할 때 마다.  best한 model weights, epoch, val_loss의 정보를 pickle파일로 유지한다.
+                    # best_val_loss, train_loss_history, val_loss_history, best_epoch_info의 정보를 저장한다.
+
                     if epoch_loss < best_val_loss:
                         best_val_loss = epoch_loss
                         best_model_wts = copy.deepcopy(self.model.state_dict())
