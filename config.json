@@ -5,15 +5,15 @@
 
     "custom_data_proportion": [1],
     "two_folders": ["val", "test"],
-    "train_data_path":"/drive/딥러닝기초/coffee_cup_dataset/train",
-    "val_data_path":"/drive/딥러닝기초/coffee_cup_dataset/val",
-    "test_data_path":"/drive/딥러닝기초/coffee_cup_dataset/test",
+    "train_data_path":"coffee_cup_dataset/train",
+    "val_data_path":"coffee_cup_dataset/val",
+    "test_data_path":"coffee_cup_dataset/test",
 
 
-    "base_path": "/content/",
-    "model_name": "COFFEE_CUP_10epochs",
+    "base_path": "./",
+    "model_name": "VAE_COFFEE_CUP_10epochs",
     "data_name": "coffee_cup",
-    "loss_data_name": "COFFEE_CUP_10epochs",
+    "loss_data_name": "VAE_COFFEE_CUP_10epochs",
 
 
     "color_channel": 1,
