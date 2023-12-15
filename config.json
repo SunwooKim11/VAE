@@ -1,5 +1,5 @@
 {   
-    "MNIST_train": 1,
+    "MNIST_train": 0,
     "MNIST_valset_proportion": 0.2,
 
 
